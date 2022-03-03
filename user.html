@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>账号信息</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="style.css" type="text/css" media="all"/>
+</head>
+<body onload="start()">
+<div class="container">
+	<div class="userPageHead">
+		<div onclick="turnPage(this.id,'accountInfo')" id="head1">账号详情</div>
+		<div onclick="turnPage(this.id,'tagInfo')" id="head2" class="userPageHeadDiv shadow-bottom">名下标签</div>
+	</div>
+	<div class="userPage" id="accountInfo">
+		<table>
+			<tr>
+				<td>用户名：</td>
+				<td>root</td>
+			</tr>
+			<tr>
+				<td>可查看标签：</td>
+				<td>3</td>
+			</tr>
+			<tr>
+				<td>可操作标签：</td>
+				<td>2</td>
+			</tr>
+		</table>
+	</div>
+	<div class="userPage" style="display:none" id="tagInfo">
+		<table>
+		<thead>
+			<tr class="shadow-bottom">
+				<td>标签名</td>
+				<td>备注</td>
+				<td>所属者</td>
+			</tr>
+		</thead>
+		<tbody id="tagList">
+		
+		</tbody>
+		</table>
+	</div>
+	<a href="index.html"><button class="go-btn">返回</button></a>
+</div>
+<script src="TagData.js"></script>
+<script>
+function start()
+{
+	renderTagListInUser(TagData);
+}
+
+function turnPage(id,pageId)
+{
+	var userPages = document.getElementsByClassName("userPage");
+	var i ;
+	for( i = 0; i<userPages.length;i++)
+	{
+		userPages[i].style.display = "none";
+	}
+	document.getElementById("head1").classList.add("shadow-bottom");
+	document.getElementById("head2").classList.add("shadow-bottom");
+	document.getElementById(id).classList.remove("shadow-bottom");
+	document.getElementById(pageId).style.display = "block";
+}
+
+function renderTagListInUser(tags)
+{
+	var i;
+	var innerhtml = "";
+	for(i = 0;i<tags.length;i++)
+	{
+		var tag = tags[i];
+		innerhtml += '<tr>'
+				+'<td>'+tag.name+'</td>'
+				+'<td>'+tag.remark+'</td>'
+				+'<td>'+tag.master+'</td>'
+				+'</tr>';
+	}
+	document.getElementById("tagList").innerHTML = innerhtml;
+}
+
+</script>
+</body>
+</html>

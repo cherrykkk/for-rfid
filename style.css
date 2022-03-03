@@ -1,0 +1,171 @@
+/*通用颜色*/
+.go-btn,button{
+	background-color:#3F5EFB;
+}
+.index-row>.leader{
+	background-color:#A4DEF9;
+}
+.index-row>.follower, .tag-cell>.tagInfo, .tag-cell>.tagCheck,.userPage,.userPageHead>div{
+	background-color:#C1E0F7;
+}
+{
+	background-color:orange;
+}
+.userPageHead,.go-btn,button{
+	color:white;
+}
+/*通用样式*/
+button{
+	border-radius:0.5em;	
+	float:left;
+}
+.help-btn{
+	float:right;
+}
+.go-btn{
+	float:right;
+	border-radius:2.5em;
+	width:5em;
+	height:5em;
+	margin-right:1em;
+}
+.shadow-bottom,.userPage tr{
+	box-shadow:	0px -1px 4px 0px black inset;
+}
+.userPage tr:hover{
+	box-shadow:	0px -1px 4px 0px white inset;
+}
+
+/*通用效果*/
+.maskLayer{
+	position:fixed;
+	width:100%;
+	height:100%;
+	background-color: rgba(0,0,0,.8);
+	display:none;
+}
+td
+{
+	text-align:center;
+	padding:0.2em;
+}
+
+
+
+.tabEnd{
+	padding:0.5px 5px;
+	text-align:left;
+	float:left;
+}
+a{
+	font-weight:bold;
+}
+input[type="checkbox"]{
+	padding:20px;
+}
+.go-btn{
+	font-size:1.1em;
+	font-weight:bold;
+}
+
+/*index*/
+.index-row{
+	width:100%;
+	float:left;
+	margin-bottom:0.8em;
+}
+.index-row>.leader, .index-row>.follower{
+	width:5em;
+	height:5em;
+	float:left;
+}
+.index-row>.leader{
+	border-style:groove;
+	border-radius:0.5em;
+	border-width:0.5em;
+	border-color:#A4DEF9;
+	margin:0.2em;
+	padding:0.5em;
+}
+.index-row>.follower{
+	border-style:dashed;
+	border-radius:2em;
+	border-width:0.2em;
+	border-color:#A4DEF9;
+	margin:0.5em;
+	padding:0.5em;
+}
+
+/*tag*/
+.tag-cell{
+	float:left;
+	margin:0.5em;
+}
+.tag-cell>.tagInfo{
+	float:left;
+	height:2.5em;
+	width:5em;
+	border-radius:2em 2em 0 0;
+	border-width:0.2em;
+	border-color:#A4DEF9;
+}
+.tag-cell .tagCheck{
+	float:left;
+	clear:left;
+	height:2.5em;
+	width:5em;
+	border-radius:0 0 2em 2em;
+	border-width:0.2em;
+	border-color:#A4DEF9;
+	border-top:2px dotted black;
+}
+.editPage{
+	float:left;
+	background-color:white;
+	margin:1em;
+	padding:0.5em;
+	border-radius:1em;
+	border-style:double;
+	border-width:0.4em;
+}
+#tagCanvas{
+	border:1px solid #000000; 
+	border-radius:1em;
+	float:left;
+	clear:both;
+}
+
+/*reader*/
+
+.interface-div,.function-table{
+	float:left;
+	height:150px;
+	width:200px;
+	padding:10px;
+	margin:10px;
+	border-style:outset;
+}
+
+.interface-div:active{
+	border-style:inset;
+}
+
+/*user*/
+.userPage{
+	float:left;
+	width:90%;
+	height:100%;
+	margin-right:2em;
+	margin-top:0;
+	border-radius:0 0.2 0.2 0.2em;
+	padding:1.5em;
+}
+.userPageHead{
+	float:left;
+	margin:0;
+}
+.userPageHead>div{
+	float:left;
+	padding:0.3em 0.3em 0.3em 0.8em;
+	border-radius:2em 0.2em 0 0;
+}

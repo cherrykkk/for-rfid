@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>读写器配置</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="style.css" type="text/css" media="all"/>
+</head>
+<body onload="start()">
+	<div>点击相应模块进行手动刷新（重新询问），或等待服务器自动刷新（发生变动事件）</div>
+	<div id="funcDivArea">
+		<div class="interface-div">
+			<div>AntennaChangeListener</div>
+			<div>描述：</div>
+			<div>返回数据:</div>
+		</div>
+		<div class="interface-div">
+			<div>BufferOverflowListener</div>
+			<div>描述：</div>
+			<div>返回数据:</div>
+		</div>
+		<div class="interface-div">
+			<div>BufferWarningListener</div>
+			<div>描述：</div>
+			<div>返回数据:</div>
+		</div>
+	</div>
+	<a href="index.html"><button class="go-btn">返回</button></a>
+</body>
+<script>
+ReaderFuncData = {
+	"connected":"(xArray)00-51-0A",
+	"funcData":[
+		{
+			"name":"AntennaChangeListener",
+			"desc":"",
+			"gotten":""
+		},{
+			"name":"BufferOverflowListener",
+			"desc":"",
+			"gotten":""
+		},{
+			"name":"BufferWarningListener",
+			"desc":"",
+			"gotten":""
+		}
+	]
+}
+
+function start()
+{
+	renderInterfaceDiv(ReaderFuncData);
+}
+
+function renderInterfaceDiv(readerFuncData)
+{
+	var innerhtml = '<div>已连接：'+readerFuncData.connected+'</div>';
+	var funcData = readerFuncData.funcData;
+	var i;
+	for(i = 0;i<funcData.length;i++)
+	{
+		innerhtml+='<div class="interface-div">'
+			+'<div>'+funcData[i].name+'</div>'
+			+'<div>描述：'+funcData[i].desc+'</div>'
+			+'<div>返回数据:'+funcData[i].gotten+'</div>'
+			+'</div>';
+	}
+	document.getElementById("funcDivArea").innerHTML = innerhtml;
+}
+	
+</script>
+</html>

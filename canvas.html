@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>标签管理</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="style.css" type="text/css" media="all"/>
+</head>
+<body onload="start()">
+<div class="maskLayer" id="tagInfoEditing">
+	<div class="editPage">
+		<form id="editForm">
+		
+		</form>
+	</div>
+	
+</div>
+<div class="container" id="container">
+	<div id="tagInputs-area">
+	
+	</div>
+	<a href="index.html"><button class="go-btn">返回</button></a>
+	<button class="help-btn">帮助</button>
+
+</div>
+
+<canvas id="tagCanvas"  width="600" height="400">
+	您的浏览器不支持 HTML5 canvas 标签。
+</canvas>
+<button onclick="turnleft()" >向左转动</button>
+<button onclick="turnright()">向右转动</button>
+
+<script src="canvasLocation.js"></script>
+<script src="TagData.js"></script>
+<script>
+
+
+function renderTagInputs(){
+	var i=0;
+	var innerhtml = "";
+	for(i=0;i<TagData.length;i++)
+	{
+		tag=TagData[i];
+		innerhtml = innerhtml 
+			+'<div class="tag-cell"><div class="tagInfo" onclick="editInfo(this.id)" id="'+ tag["TID"]+'"><p>'
+			+tag["name"]
+			+'</p></div><label class="tagCheck"><input type="checkbox" name="RFIDTag" class="checkbox" onclick="refreshCanvas()"';
+		if(tag["checked"]==true) innerhtml += ' checked ';
+		innerhtml += '></label></div>';
+	}
+	document.getElementById("tagInputs-area").innerHTML = innerhtml;
+}
+
+function refreshCanvas(id){
+	var tagInput = document.getElementsByName("RFIDTag");
+	var i=0;
+	for(i=0;i<tagInput.length;i++)
+	{
+		if(tagInput[i].checked == true)
+		{
+			TagData[i].checked = true;
+		}
+		else
+		{
+			TagData[i].checked = false;
+		}
+	}
+	clear();
+	drawAxis();
+	renderTagList(TagData);
+}
+
+
+function renderTagList(tags)
+{
+	var i = 0;
+	for(i = 0;i < tags.length;i++)
+	{
+		var tag = tags[i];
+		if(tag.checked == true)
+		{
+			drawPoint3d(tag.position.x, tag.position.y, tag.position.z);
+		}
+	}
+}
+
+function start(){	
+	renderTagInputs();
+	drawAxis();
+	renderTagList(TagData);
+}
+
+function editInfo(TID){
+	console.log("edit"+TID);
+	document.getElementById("tagInfoEditing").style.display = "block";
+	var i,tag;
+	for(i = 0;i<TagData.length;i++)
+	{
+		if(TID==TagData[i].TID)
+		{
+			tag = TagData[i];
+		}
+	}
+	var innerhtml = '<table class="edit-tbl"><tr><td colspan="2">编辑标签信息</td></tr>'
+			+'<tr><td>标签名：</td><td><input id="tagName" value="'+tag.name+'"></td></tr>'
+			+'<tr><td>EPC：</td><td><input id="tagEPC" value="'+tag.EPC+'"></td></tr>'
+			+'<tr><td>TID：</td><td>'+tag.TID+'</td></tr>'	
+			+'<tr><td>所属：</td><td>'+tag.master+'</td></tr>'	
+			+'<tr><td>账号权限：</td><td>可读写</td></tr>'
+			+'<tr><td>位置：</td><td>'+tag.positionPermission+'</td></tr>'
+			+'<tr><td colspan="2"><button type="button" style="float:none;margin:0.5em;" onclick="infoEdited()">提交修改</button>'
+			+'<button type="button" style="float:none;margin:0.5em;" onclick="removeMask()">退出修改</button></td></tr>'
+			+'</table>'
+			+'<div id="tagTID" style="display:none;">'+tag.TID+'</div>';
+	document.getElementById("editForm").innerHTML = innerhtml;
+}
+function removeMask(){
+	document.getElementById("tagInfoEditing").style.display = "none";
+}
+function infoEdited(){
+	var TID = document.getElementById("tagTID").innerHTML;
+	var i,tag;
+	for(i = 0;i<TagData.length;i++)
+	{
+		if(TID==TagData[i].TID)
+		{
+			TagData[i].name = document.getElementById("tagName").value;
+			TagData[i].EPC = document.getElementById("tagEPC").value;
+		}
+	}
+	renderTagInputs();
+	removeMask();
+}
+
+</script>
+
+</body>
+</html>
+
